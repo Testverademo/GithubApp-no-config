@@ -483,8 +483,11 @@ public class BlabController {
 			Class.forName("com.mysql.jdbc.Driver");
 			connect = DriverManager.getConnection(Constants.create().getJdbcConnectionString());
 
-	// Find the Blabbers
+			// Find the Blabbers
 			logger.info(blabbersSql);
+		Set<String> whitelistSort = new HashSet<>(Arrays.asList("item1", "item2", "item3"));
+		if (!sort.matches("\\w+(\\s*\\.\\s*\\w+)*") && !whitelistSort.contains(sort))
+		    throw new IllegalArgumentException();
 		Set<String> whitelistSort = new HashSet<>(Arrays.asList("item1", "item2", "item3"));
 		if (!sort.matches("\\w+(\\s*\\.\\s*\\w+)*") && !whitelistSort.contains(sort))
 		    throw new IllegalArgumentException();
