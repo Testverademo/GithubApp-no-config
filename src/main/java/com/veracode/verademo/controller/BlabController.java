@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.*;
 
 import com.veracode.verademo.commands.BlabberCommand;
 import com.veracode.verademo.model.Blab;
@@ -485,17 +484,11 @@ public class BlabController {
 
 			// Find the Blabbers
 			logger.info(blabbersSql);
-		Set<String> whitelistSort = new HashSet<>(Arrays.asList("item1", "item2", "item3"));
-		if (!sort.matches("\\w+(\\s*\\.\\s*\\w+)*") && !whitelistSort.contains(sort))
-		    throw new IllegalArgumentException();
-		Set<String> whitelistSort = new HashSet<>(Arrays.asList("item1", "item2", "item3"));
-		if (!sort.matches("\\w+(\\s*\\.\\s*\\w+)*") && !whitelistSort.contains(sort))
-		    throw new IllegalArgumentException();
 			blabberQuery = connect.prepareStatement(blabbersSql);
 			blabberQuery.setString(1, username);
 			blabberQuery.setString(2, username);
 			ResultSet blabbersResults = blabberQuery.executeQuery();
-			/* END EXAMPLE VULNERABILITY */
+			/* END BAD CODE */
 
 			List<Blabber> blabbers = new ArrayList<Blabber>();
 			while (blabbersResults.next()) {
